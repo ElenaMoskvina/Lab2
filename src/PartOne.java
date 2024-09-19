@@ -11,46 +11,88 @@ public class PartOne {
 		float ya = 0;
 		float yb = 0;
 		float yc = 0;
-		float partOfFirstPart =0;
-		float firstPart =0;
+		float partOfFirstPartA =0;
+		float firstPartA =0;
+		
+		float partOfFirstPartB =0;
+		float firstPartB =0;
+		
+		float partOfFirstPartC =0;
+		float firstPartC =0;
+		
 		float secondPart =0;
 		float thirdPart =0;
 		
-		System.out.println  ("a       |b       |c       |");
+		float x;
+		
+		System.out.println  ("a           |с           |b           |ya          |yс          |yb          |fpa         |fpb         |fpc         |sp         |tp         |");
+				
+		
 		
 		while(Math.abs(b-a)>e) {
-			c = (a+b)/2;
-			for (int g = 0; g<mistakes.size(); g++ ) {
-				partOfFirstPart = 1/(a-mistakes.get(g));
-				firstPart = firstPart+partOfFirstPart;
-				secondPart =secondPart+ mistakes.get(g);
-				thirdPart = quantity.get(g)*mistakes.get(g)+ thirdPart;
-			}
+				c = (a+b)/2;
+				String formattedA = new DecimalFormat("#0.00000000").format(a);
+				String formattedC = new DecimalFormat("#0.00000000").format(c);
+				String formattedB = new DecimalFormat("#0.00000000").format(b);
 			
-			ya =  firstPart-mistakes.size()*secondPart/((a+1)*secondPart-thirdPart);
-			yb = firstPart-mistakes.size()*secondPart/((b+1)*secondPart-thirdPart);
-			yc = firstPart-mistakes.size()*secondPart/((c+1)*secondPart-thirdPart);
+				firstPartA = 0; //первая часть уравнения (1/(B+i-1) от переменной a
+				firstPartB = 0; //первая часть уравнения (1/(B+i-1) от переменной b
+				firstPartC = 0;	//первая часть уравнения (1/(B+i-1) от переменной c
+				secondPart = 0;//вторая часть уравнения (сумма значений времени)
+				thirdPart = 0; //третья часть уравнения(сумма произведений значений времени и номера ошибки)
+				for (int i = 0; i<mistakes.size(); i++ ) {
+					
+					
+					partOfFirstPartA = 1/(a-quantity.get(i)+1);
+					firstPartA = firstPartA+partOfFirstPartA;
+										
+					partOfFirstPartB = 1/(b-quantity.get(i)+1);
+					firstPartB = firstPartB+partOfFirstPartB;
+										
+					partOfFirstPartC = 1/(c-quantity.get(i)+1);
+					firstPartC = firstPartC+partOfFirstPartC;
+					
+					secondPart =secondPart+ mistakes.get(i);
+										
+					thirdPart = thirdPart+quantity.get(i)*mistakes.get(i);
+				}
+				
+				ya = firstPartA-((mistakes.size()*secondPart)/((a+1)*secondPart-thirdPart));
+				yb = firstPartB-((mistakes.size()*secondPart)/((b+1)*secondPart-thirdPart));
+				yc = firstPartC-((mistakes.size()*secondPart)/((c+1)*secondPart-thirdPart));
+							
+				
+					
+				
+			String formattedYA = new DecimalFormat ("#0.00000000").format(ya);
+			String formattedYC = new DecimalFormat ("#0.00000000").format(yc);
+			String formattedYB = new DecimalFormat ("#0.00000000").format(yb);
+			String formattedFirPartA = new DecimalFormat ("#0.00000000").format(firstPartA);
+			String formattedFirPartB = new DecimalFormat ("#0.00000000").format(firstPartB);
+			String formattedFirPartС = new DecimalFormat ("#0.00000000").format(firstPartC);
+			String formattedSecPart = new DecimalFormat ("#0.00000000").format(secondPart);
+			String formattedThPart = new DecimalFormat ("#0.00000000").format(thirdPart);
 			
-			if (ya*yb<0) {
+			System.out.println (formattedA+" |"+formattedC+" |"+formattedB+" |"+formattedYA+" |"+formattedYC+" |"+formattedYB+" |"+formattedFirPartA+"|"+formattedFirPartС+"|"+formattedFirPartB+" |"+formattedSecPart+" |"+formattedThPart+" |");
+			
+			if (ya*yc<0) {
 				a=a; b=c;
 			}
-			else a=c; b=b;
-			
-			String formattedA = new DecimalFormat("#0.0000").format(a);
-			String formattedB = new DecimalFormat("#0.0000").format(a);
-			String formattedC = new DecimalFormat("#0.0000").format(a);
-		
-		
-			System.out.println (formattedA+" |"+formattedB+" |"+formattedC+" |");
-			
+			else if (yb*yc<0) {
+				a=c; b=b;
+				
 			}
+			else { 
+				System.out.println ("На заданном промежутке ошибка: нет корня / значения точек диапазона не в области определения функции / на промежутке несколько корней");	
+				c = (Float) null;
+				break;
+						}
+			
+		}
 			
 			System.out.println("Величина B равна: " + c);
-		return c;
+		
+			return c;
 	}
-	
-	
-	
-	
 	
 }

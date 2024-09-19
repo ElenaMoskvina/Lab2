@@ -10,7 +10,7 @@ public class Lab2 {
 
 public static void main (String[] args) throws IOException  {
 	
-	//считать из файла параметры
+	//считать из файла параметры функции: q - количество ошибок, m - интервал времени до ошибки 
 	System.out.println ("Данные файла lab2.txt");
 	System.out.println ("q  |"+ "m  |");
 	Path filePath = Paths.get("lab2.txt");
@@ -54,7 +54,7 @@ public static void main (String[] args) throws IOException  {
 	//Пункт 2
 	
 	PartTwo partTwo = new PartTwo();
-	float k1= partTwo.BCalc(c, mistakes, quantity );
+	float k1= partTwo.KCalc(c, mistakes, quantity );
 		
 		
 	//Пункт 3

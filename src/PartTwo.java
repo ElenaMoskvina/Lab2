@@ -3,7 +3,7 @@ import java.util.List;
 public class PartTwo {
 
 	
-	public float BCalc (float c, List<Integer> mistakes, List<Integer> quantity ) {
+	public float KCalc (float c, List<Integer> mistakes, List<Integer> quantity ) {
 	float k1 = 0;
 	float k2 = 0;
 	float partFirstB = 0;
@@ -11,11 +11,15 @@ public class PartTwo {
 	float partSecondB = 0;
 	float partThirdB = 0;
 	
-	for (int h = 0; h<mistakes.size(); h++) {
-		partOfPartFirstB=(c-h)*mistakes.get(h);
+	for (int i = 0; i<mistakes.size(); i++) {
+		
+		partOfPartFirstB=(c-i)*mistakes.get(i);
 		partFirstB = partFirstB+partOfPartFirstB;
-		partSecondB = partSecondB+mistakes.get(h);
-		partThirdB = partThirdB+quantity.get(h)*mistakes.get(h);
+		
+		partSecondB = partSecondB+mistakes.get(i);
+		
+		partThirdB = partThirdB+quantity.get(i)*mistakes.get(i);
+		
 		//System.out.println(partFirstB +" "+partSecondB+" "+partThirdB);
 	
 	}

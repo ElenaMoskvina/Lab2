@@ -3,14 +3,20 @@ import java.util.List;
 public class PartFour {
 	
 	public float TTCalc (float c, float k1, List<Integer> mistakes,  List<Integer> quantity) {
-	float tt = 0;
+	
+	float t1 = 0;
 	float partFirstG = 0;
-	for (int j = 0 ; j<(c-mistakes.size()); j++) {
-		partFirstG = partFirstG+1/quantity.get(j);
 		
+	int newc = Math.round(c);
+		
+	for (int i = 0 ; i<(newc-mistakes.size()); i++) {
+		partFirstG = partFirstG+1/quantity.get(i).floatValue();
+			
 	}
-	tt=(1/k1)*partFirstG;
-	System.out.println ("Время до начала тестирования " + tt);
-	return tt;
-}
+	
+	t1=(1/k1)*partFirstG;
+	System.out.println ("Время до начала тестирования " + t1);
+		
+	return t1;
+	}
 }

@@ -1,12 +1,10 @@
 import java.util.List;
 
 public class AverageBugTime {
-	public float TCalc (float c, float k1, List<Integer> mistakes) {
+	public float AverageBugTimeCalc (float c, float k1, List<Integer> bugTime) {
 	float t1 = 0;
-	float t2 = 0;
-	t1=1/(k1*(c-mistakes.size()));
+	t1=1/(k1*(c-bugTime.size()));
 	System.out.println ("Среднее время до появления ошибки " + t1);
-	
 	return t1;
 	}
 }

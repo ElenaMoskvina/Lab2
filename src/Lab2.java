@@ -43,31 +43,31 @@ public static void main (String[] args) throws IOException  {
 
 	//Считать из консоли интервал [a, b]и погрешность e
 	Scanner in = new Scanner(System.in);
-	System.out.println ("Input a");
+	System.out.println ("Введите нижнюю границу интервала");
 	float a = in.nextFloat();
-	System.out.println ("Input b");	
+	System.out.println ("Введите верхнюю границу интервала");	
 	float b = in.nextFloat();
-	System.out.println ("Input e");
+	System.out.println ("Введите желаемую погрешность");
 	float e = in.nextFloat();
 	
 	//Вычислить общее количество ошибок в программе
 	NumberOfBugs numberOfBugs = new NumberOfBugs();
-	float c = numberOfBugs.BCalc(a, b, e, bugTime, bugNumber);
+	float c = numberOfBugs.BugsCalc(a, b, e, bugTime, bugNumber);
 	
 	
 	//Вычислить коэффициент пропорциональности	
 	ScaleFactor scaleFactor = new ScaleFactor();
-	float k1= scaleFactor.KCalc(c, bugTime, bugNumber );
+	float k1= scaleFactor.ScaleFactorCalc(c, bugTime, bugNumber );
 		
 		
 	//Вычислить среднее время до появления ошибки	
 	AverageBugTime averageBugTime = new AverageBugTime();
-	float t = averageBugTime.TCalc(c, k1, bugTime);
+	float t = averageBugTime.AverageBugTimeCalc(c, k1, bugTime);
 	
 	
 	//Вычислить время до начала тестирования
 	TestingStartTime testingStartTime  = new TestingStartTime();
-	float tt =  testingStartTime.TTCalc (c, k1, bugTime, bugNumber);
+	float tt =  testingStartTime.TestingStartTimeCalc (c, k1, bugTime, bugNumber);
 	}
 }
 

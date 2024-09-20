@@ -3,7 +3,7 @@ import java.util.List;
 public class ScaleFactor {
 
 	
-	public float KCalc (float c, List<Integer> mistakes, List<Integer> bugNumber ) {
+	public float ScaleFactorCalc (float c, List<Integer> bugTime, List<Integer> bugNumber ) {
 	float k1 = 0;
 	float k2 = 0;
 	float partFirstB = 0;
@@ -11,24 +11,24 @@ public class ScaleFactor {
 	float partSecondB = 0;
 	float partThirdB = 0;
 	
-	for (int i = 0; i<mistakes.size(); i++) {
+	for (int i = 0; i<bugTime.size(); i++) {
 		
-		partOfPartFirstB=(c-i)*mistakes.get(i);
+		partOfPartFirstB=(c-i)*bugTime.get(i);
 		partFirstB = partFirstB+partOfPartFirstB;
 		
-		partSecondB = partSecondB+mistakes.get(i);
+		partSecondB = partSecondB+bugTime.get(i);
 		
-		partThirdB = partThirdB+bugNumber.get(i)*mistakes.get(i);
+		partThirdB = partThirdB+bugNumber.get(i)*bugTime.get(i);
 		
-		//System.out.println(partFirstB +" "+partSecondB+" "+partThirdB);
+		
 	
 	}
 	
 		
-	k1=mistakes.size()/partFirstB;
+	k1=bugTime.size()/partFirstB;
 	System.out.println ("Коэффициент пропорциональности1 " +k1);
 			
-	k2=mistakes.size()/((c+1)*partSecondB-partThirdB);
+	k2=bugTime.size()/((c+1)*partSecondB-partThirdB);
 	System.out.println ("Коэффициент пропорциональности2 " +k2);
 	
 	return k1;

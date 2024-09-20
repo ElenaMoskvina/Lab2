@@ -6,7 +6,7 @@ public class NumberOfBugs {
 
 	
 	
-	public float BCalc  (float a, float b, float e, List<Integer> bugTime, List<Integer> bugNumber) {
+	public float BugsCalc  (float a, float b, float e, List<Integer> bugTime, List<Integer> bugNumber) {
 		float c = 0;
 		float ya = 0;
 		float yb = 0;
@@ -25,21 +25,18 @@ public class NumberOfBugs {
 		
 		float x;
 		
-		System.out.println  ("a           |с           |b           |ya          |yс          |yb          |fpa         |fpb         |fpc         |sp         |tp         |");
+		System.out.println  ("|LowerPoint a |MiddlePoint c|UpperPoint b |B(a)       |B(с)         |B(b)        |LeftPart(a)  |LeftPart(b) |LeftPart(c)  |RightPartDivisible |RightPartDivider|");
 				
 		
 		
 		while(Math.abs(b-a)>e) {
 				c = (a+b)/2;
-				String formattedA = new DecimalFormat("#0.00000000").format(a);
-				String formattedC = new DecimalFormat("#0.00000000").format(c);
-				String formattedB = new DecimalFormat("#0.00000000").format(b);
-			
-				firstPartA = 0; //первая часть уравнения (1/(B+i-1) от переменной a
-				firstPartB = 0; //первая часть уравнения (1/(B+i-1) от переменной b
-				firstPartC = 0;	//первая часть уравнения (1/(B+i-1) от переменной c
-				secondPart = 0;//вторая часть уравнения (сумма значений времени)
-				thirdPart = 0; //третья часть уравнения(сумма произведений значений времени и номера ошибки)
+							
+				firstPartA = 0; //левая часть уравнения (1/(B+i-1) от переменной a
+				firstPartB = 0; //левая часть уравнения (1/(B+i-1) от переменной b
+				firstPartC = 0;	//левая часть уравнения (1/(B+i-1) от переменной c
+				secondPart = 0;//делимое правой части уравнения 
+				thirdPart = 0; //делитель правой части уравнения
 				for (int i = 0; i<bugTime.size(); i++ ) {
 					
 					
@@ -62,18 +59,12 @@ public class NumberOfBugs {
 				yc = firstPartC-((bugTime.size()*secondPart)/((c+1)*secondPart-thirdPart));
 							
 				
-					
-				
-			String formattedYA = new DecimalFormat ("#0.00000000").format(ya);
-			String formattedYC = new DecimalFormat ("#0.00000000").format(yc);
-			String formattedYB = new DecimalFormat ("#0.00000000").format(yb);
-			String formattedFirPartA = new DecimalFormat ("#0.00000000").format(firstPartA);
-			String formattedFirPartB = new DecimalFormat ("#0.00000000").format(firstPartB);
-			String formattedFirPartС = new DecimalFormat ("#0.00000000").format(firstPartC);
-			String formattedSecPart = new DecimalFormat ("#0.00000000").format(secondPart);
-			String formattedThPart = new DecimalFormat ("#0.00000000").format(thirdPart);
+			String str = String.format (
+					"|%1$+.8f |%2$+.8f |%3$+.8f |%4$+.8f|%5$+.8f  |%6$+.8f |%7$+.8f  |%8$+.8f |%9$+.8f  |%10$+.8f      |%11$+.8f  |" , 
+					a, c, b, ya, yb, yc,	firstPartA, firstPartB, firstPartC, secondPart, thirdPart);		
+			System.out.println(str);
 			
-			System.out.println (formattedA+" |"+formattedC+" |"+formattedB+" |"+formattedYA+" |"+formattedYC+" |"+formattedYB+" |"+formattedFirPartA+"|"+formattedFirPartС+"|"+formattedFirPartB+" |"+formattedSecPart+" |"+formattedThPart+" |");
+					
 			
 			if (ya*yc<0) {
 				a=a; b=c;

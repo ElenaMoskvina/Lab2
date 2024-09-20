@@ -2,11 +2,11 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class PartOne {
+public class NumberOfBugs {
 
 	
 	
-	public float BCalc  (float a, float b, float e, List<Integer> mistakes, List<Integer> quantity) {
+	public float BCalc  (float a, float b, float e, List<Integer> bugTime, List<Integer> bugNumber) {
 		float c = 0;
 		float ya = 0;
 		float yb = 0;
@@ -40,26 +40,26 @@ public class PartOne {
 				firstPartC = 0;	//первая часть уравнения (1/(B+i-1) от переменной c
 				secondPart = 0;//вторая часть уравнения (сумма значений времени)
 				thirdPart = 0; //третья часть уравнения(сумма произведений значений времени и номера ошибки)
-				for (int i = 0; i<mistakes.size(); i++ ) {
+				for (int i = 0; i<bugTime.size(); i++ ) {
 					
 					
-					partOfFirstPartA = 1/(a-quantity.get(i)+1);
+					partOfFirstPartA = 1/(a-bugNumber.get(i)+1);
 					firstPartA = firstPartA+partOfFirstPartA;
 										
-					partOfFirstPartB = 1/(b-quantity.get(i)+1);
+					partOfFirstPartB = 1/(b-bugNumber.get(i)+1);
 					firstPartB = firstPartB+partOfFirstPartB;
 										
-					partOfFirstPartC = 1/(c-quantity.get(i)+1);
+					partOfFirstPartC = 1/(c-bugNumber.get(i)+1);
 					firstPartC = firstPartC+partOfFirstPartC;
 					
-					secondPart =secondPart+ mistakes.get(i);
+					secondPart =secondPart+ bugTime.get(i);
 										
-					thirdPart = thirdPart+quantity.get(i)*mistakes.get(i);
+					thirdPart = thirdPart+bugNumber.get(i)*bugTime.get(i);
 				}
 				
-				ya = firstPartA-((mistakes.size()*secondPart)/((a+1)*secondPart-thirdPart));
-				yb = firstPartB-((mistakes.size()*secondPart)/((b+1)*secondPart-thirdPart));
-				yc = firstPartC-((mistakes.size()*secondPart)/((c+1)*secondPart-thirdPart));
+				ya = firstPartA-((bugTime.size()*secondPart)/((a+1)*secondPart-thirdPart));
+				yb = firstPartB-((bugTime.size()*secondPart)/((b+1)*secondPart-thirdPart));
+				yc = firstPartC-((bugTime.size()*secondPart)/((c+1)*secondPart-thirdPart));
 							
 				
 					

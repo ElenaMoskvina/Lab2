@@ -1,8 +1,8 @@
 import java.util.List;
 
-public class PartFour {
+public class TestingStartTime {
 	
-	public float TTCalc (float c, float k1, List<Integer> mistakes,  List<Integer> quantity) {
+	public float TTCalc (float c, float k1, List<Integer> mistakes,  List<Integer> bugNumber) {
 	
 	float t1 = 0;
 	float partFirstG = 0;
@@ -10,7 +10,7 @@ public class PartFour {
 	int newc = Math.round(c);
 		
 	for (int i = 0 ; i<(newc-mistakes.size()); i++) {
-		partFirstG = partFirstG+1/quantity.get(i).floatValue();
+		partFirstG = partFirstG+1/bugNumber.get(i).floatValue();
 			
 	}
 	

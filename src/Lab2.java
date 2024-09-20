@@ -10,25 +10,29 @@ public class Lab2 {
 
 public static void main (String[] args) throws IOException  {
 	
-	//считать из файла параметры функции: q - количество ошибок, m - интервал времени до ошибки 
+	//Прочитать из файла параметры функции: q - количество ошибок, m - интервал времени до ошибки 
 	System.out.println ("Данные файла lab2.txt");
 	System.out.println ("q  |"+ "m  |");
+	
+	//// Получение данных из файла
 	Path filePath = Paths.get("lab2.txt");
 	Scanner scanner = new Scanner(filePath);
-	List<Integer> mistakes = new ArrayList<>();
-	List<Integer> quantity = new ArrayList<>();
+	
+	////Запись в список и вывод в консоль
+	List<Integer> bugTime = new ArrayList<>();
+	List<Integer> bugNumber = new ArrayList<>();
 	int q = 1;
 	int i = -1;
 	while (scanner.hasNext()) {
 		if(scanner.hasNext()) {
-			mistakes.add(scanner.nextInt());
-			quantity.add(q++);
+			bugTime.add(scanner.nextInt());
+			bugNumber.add(q++);
 			i++;
 			
-			String formattedQ = new DecimalFormat("00").format(quantity.get(i));
-			String formattedM = new DecimalFormat("00").format(mistakes.get(i));
+			String formattedBugNumber = new DecimalFormat("00").format(bugNumber.get(i));
+			String formattedBugTime = new DecimalFormat("00").format(bugTime.get(i));
 			
-			System.out.println (formattedQ+" |"+formattedM+" |");
+			System.out.println (formattedBugNumber+" |"+formattedBugTime+" |");
 			
 		}
 		else {
@@ -37,7 +41,7 @@ public static void main (String[] args) throws IOException  {
 	}
 	
 
-	//считать из консоли параметры
+	//Считать из консоли интервал [a, b]и погрешность e
 	Scanner in = new Scanner(System.in);
 	System.out.println ("Input a");
 	float a = in.nextFloat();
@@ -46,26 +50,24 @@ public static void main (String[] args) throws IOException  {
 	System.out.println ("Input e");
 	float e = in.nextFloat();
 	
-	//Пункт 1
-	PartOne partOne = new PartOne();
-	float c = partOne.BCalc(a, b, e, mistakes, quantity);
+	//Вычислить общее количество ошибок в программе
+	NumberOfBugs numberOfBugs = new NumberOfBugs();
+	float c = numberOfBugs.BCalc(a, b, e, bugTime, bugNumber);
 	
 	
-	//Пункт 2
-	
-	PartTwo partTwo = new PartTwo();
-	float k1= partTwo.KCalc(c, mistakes, quantity );
+	//Вычислить коэффициент пропорциональности	
+	ScaleFactor scaleFactor = new ScaleFactor();
+	float k1= scaleFactor.KCalc(c, bugTime, bugNumber );
 		
 		
-	//Пункт 3
-	
-	PartThree partThree = new PartThree();
-	float t = partThree.TCalc(c, k1, mistakes);
-	
+	//Вычислить среднее время до появления ошибки	
+	AverageBugTime averageBugTime = new AverageBugTime();
+	float t = averageBugTime.TCalc(c, k1, bugTime);
 	
 	
-	PartFour partFour  = new PartFour();
-	float tt =  partFour.TTCalc (c, k1, mistakes, quantity);
+	//Вычислить время до начала тестирования
+	TestingStartTime testingStartTime  = new TestingStartTime();
+	float tt =  testingStartTime.TTCalc (c, k1, bugTime, bugNumber);
 	}
 }
 

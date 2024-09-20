@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class PartThree {
+public class AverageBugTime {
 	public float TCalc (float c, float k1, List<Integer> mistakes) {
 	float t1 = 0;
 	float t2 = 0;

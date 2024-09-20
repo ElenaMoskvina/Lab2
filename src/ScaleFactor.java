@@ -1,9 +1,9 @@
 import java.util.List;
 
-public class PartTwo {
+public class ScaleFactor {
 
 	
-	public float KCalc (float c, List<Integer> mistakes, List<Integer> quantity ) {
+	public float KCalc (float c, List<Integer> mistakes, List<Integer> bugNumber ) {
 	float k1 = 0;
 	float k2 = 0;
 	float partFirstB = 0;
@@ -18,7 +18,7 @@ public class PartTwo {
 		
 		partSecondB = partSecondB+mistakes.get(i);
 		
-		partThirdB = partThirdB+quantity.get(i)*mistakes.get(i);
+		partThirdB = partThirdB+bugNumber.get(i)*mistakes.get(i);
 		
 		//System.out.println(partFirstB +" "+partSecondB+" "+partThirdB);
 	

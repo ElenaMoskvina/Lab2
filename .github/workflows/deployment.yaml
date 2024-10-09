@@ -9,15 +9,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
 
-    - name: Copy files to server
-      uses: ElenaMoskvina/scp-action@master
+    - name: Deploy to Hosting
+      uses: ElenaMoskvina/FTP-Deploy-Action@4.0.0
       with:
-        host: ${{ secrets.localhost }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        password: ${{ secrets.SERVER_PASSWORD }}
-        port: ${{ secrets.SERVER_PORT }}
-        rm: true
-        source: "./*"
-        target: "public_html/working_directory"
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: "public_html/working_directory"

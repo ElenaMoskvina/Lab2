@@ -1,7 +1,6 @@
 name: Lab2_Pipline
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main

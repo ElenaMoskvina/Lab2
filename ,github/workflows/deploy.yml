@@ -30,7 +30,7 @@ jobs:
           architecture: x64
 
       - name: lab2
-        working-directory: lab2
+        working-directory: Lab2
         env:
           JAVA_HOME: ${{ env.JAVA_HOME }}
         run: |
